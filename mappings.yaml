@@ -1,0 +1,204 @@
+# Unified Zero Trust Framework — Finding-to-Pillar Mappings
+# Reference: SPEC.md §5 — Finding-to-Pillar Mapping
+#
+# This file defines the default mapping rules from security scanner findings
+# to UZTF pillars. Implementations should use these as the baseline mapping
+# and allow project-specific overrides.
+#
+# Format:
+#   - keywords: [list of keywords to match in finding title/description]
+#     pillar: <pillar_name>
+     default_maturity: <Baseline|Advanced|Adaptive>
+
+# ──────────────────────────────────────────────
+# Pillar: Identity
+# Authentication, authorization, credential management
+# ──────────────────────────────────────────────
+- keywords: [secret, secrets]
+  pillar: identity
+  default_maturity: Baseline
+- keywords: [credential, credentials]
+  pillar: identity
+  default_maturity: Baseline
+- keywords: [password, passwords]
+  pillar: identity
+  default_maturity: Baseline
+- keywords: [token, tokens, api.key, api_key]
+  pillar: identity
+  default_maturity: Baseline
+- keywords: [ssh.key, ssh_key, private.key]
+  pillar: identity
+  default_maturity: Baseline
+- keywords: [oauth, jwt, bearer]
+  pillar: identity
+  default_maturity: Advanced
+
+# ──────────────────────────────────────────────
+# Pillar: Devices
+# Endpoint health, code quality, supply chain
+# ──────────────────────────────────────────────
+- keywords: [injection]
+  pillar: devices
+  default_maturity: Baseline
+- keywords: [xss, cross.site]
+  pillar: devices
+  default_maturity: Advanced
+- keywords: [rce, remote.code, command.injection]
+  pillar: devices
+  default_maturity: Advanced
+- keywords: [buffer.overflow, use.after.free, memory.safety]
+  pillar: devices
+  default_maturity: Advanced
+- keywords: [path.traversal, lfi, directory.traversal]
+  pillar: devices
+  default_maturity: Baseline
+- keywords: [unvalidated, unsanitized]
+  pillar: devices
+  default_maturity: Baseline
+
+# ──────────────────────────────────────────────
+# Pillar: Networks
+# Segmentation, traffic security, IaC
+# ──────────────────────────────────────────────
+- keywords: [misconfig, misconfiguration]
+  pillar: networks
+  default_maturity: Baseline
+- keywords: [ssrf, server.side.request]
+  pillar: networks
+  default_maturity: Advanced
+- keywords: [iac, terraform, cloudformation]
+  pillar: networks
+  default_maturity: Advanced
+- keywords: [docker, container]
+  pillar: networks
+  default_maturity: Baseline
+- keywords: [kubernetes, k8s]
+  pillar: networks
+  default_maturity: Advanced
+- keywords: [open.port, exposed.port, port.exposed]
+  pillar: networks
+  default_maturity: Baseline
+- keywords: [tls, ssl, certificate]
+  pillar: networks
+  default_maturity: Baseline
+- keywords: [firewall, security.group, nacl]
+  pillar: networks
+  default_maturity: Baseline
+
+# ──────────────────────────────────────────────
+# Pillar: Applications
+# Application security, web security, APIs
+# ──────────────────────────────────────────────
+- keywords: [sqli, sql.injection]
+  pillar: applications
+  default_maturity: Baseline
+- keywords: [csrf, cross.site.request]
+  pillar: applications
+  default_maturity: Baseline
+- keywords: [ssti, server.side.template]
+  pillar: applications
+  default_maturity: Advanced
+- keywords: [idor, insecure.direct]
+  pillar: applications
+  default_maturity: Advanced
+- keywords: [open.redirect]
+  pillar: applications
+  default_maturity: Baseline
+- keywords: [dependency, dependencies]
+  pillar: applications
+  default_maturity: Baseline
+- keywords: [vulnerability, cve, cwe]
+  pillar: applications
+  default_maturity: Baseline
+- keywords: [deserialization]
+  pillar: applications
+  default_maturity: Advanced
+- keywords: [xxe, xml.external]
+  pillar: applications
+  default_maturity: Advanced
+- keywords: [api, rest.endpoint]
+  pillar: applications
+  default_maturity: Baseline
+
+# ──────────────────────────────────────────────
+# Pillar: Data
+# Encryption, classification, DLP
+# ──────────────────────────────────────────────
+- keywords: [encryption, unencrypted, plaintext]
+  pillar: data
+  default_maturity: Baseline
+- keywords: [dlp, data.loss, exfiltration]
+  pillar: data
+  default_maturity: Advanced
+- keywords: [pii, personally.identifiable, sensitive.data]
+  pillar: data
+  default_maturity: Advanced
+- keywords: [backup, data.retention]
+  pillar: data
+  default_maturity: Baseline
+- keywords: [classification, data.class]
+  pillar: data
+  default_maturity: Advanced
+
+# ──────────────────────────────────────────────
+# Pillar: Visibility
+# Monitoring, logging, analytics
+# ──────────────────────────────────────────────
+- keywords: [audit, audit.log, audit.trail]
+  pillar: visibility
+  default_maturity: Baseline
+- keywords: [logging, log.forward, centralized.log]
+  pillar: visibility
+  default_maturity: Baseline
+- keywords: [monitoring, observability]
+  pillar: visibility
+  default_maturity: Advanced
+- keywords: [telemetry, metrics, tracing]
+  pillar: visibility
+  default_maturity: Advanced
+- keywords: [alert, notification]
+  pillar: visibility
+  default_maturity: Baseline
+
+# ──────────────────────────────────────────────
+# Pillar: Automation
+# CI/CD, policy enforcement, orchestration
+# ──────────────────────────────────────────────
+- keywords: [ci/cd, pipeline, github.action]
+  pillar: automation
+  default_maturity: Baseline
+- keywords: [deployment, release, rollback]
+  pillar: automation
+  default_maturity: Baseline
+- keywords: [orchestration, policy.enforcement]
+  pillar: automation
+  default_maturity: Advanced
+- keywords: [iac, infrastructure.code]
+  pillar: automation
+  default_maturity: Advanced
+- keywords: [immutable, gold.image, base.image]
+  pillar: automation
+  default_maturity: Advanced
+
+# ──────────────────────────────────────────────
+# Pillar: Infrastructure
+# Cloud config, host hardening, IAM
+# ──────────────────────────────────────────────
+- keywords: [cloud, aws, gcp, azure]
+  pillar: infrastructure
+  default_maturity: Baseline
+- keywords: [iam, role, policy, permission]
+  pillar: infrastructure
+  default_maturity: Baseline
+- keywords: [root.user, root.access, privileged]
+  pillar: infrastructure
+  default_maturity: Baseline
+- keywords: [healthcheck, health.check]
+  pillar: infrastructure
+  default_maturity: Baseline
+- keywords: [base.image, container.image, image.tag]
+  pillar: infrastructure
+  default_maturity: Baseline
+- keywords: [runtime, pod, deployment, service]
+  pillar: infrastructure
+  default_maturity: Baseline
