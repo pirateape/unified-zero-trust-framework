@@ -127,7 +127,7 @@ Each pillar includes gap analysis metadata:
   "pillar": "identity",
   "current_maturity": "Baseline",
   "target_maturity": "Advanced",
-  "gap": "Medium",
+  "gap_level": "Small",
   "blocking_findings": 4,
   "recommendations": [
     "Rotate all hardcoded secrets",
@@ -139,12 +139,15 @@ Each pillar includes gap analysis metadata:
 
 ### Gap Levels
 
-| Gap | Description |
-|-----|-------------|
-| **None** | At or above target maturity |
-| **Small** | 1–2 blocking findings, incremental improvements needed |
-| **Medium** | 3–5 blocking findings, significant effort required |
-| **Large** | 6+ blocking findings, foundational changes needed |
+Gaps are measured as the difference between current and target maturity tiers:
+
+| Gap | Threshold | Description |
+|-----|-----------|-------------|
+| **None** | Current ≥ Target | On track, no action needed |
+| **Small** | 1 tier difference (e.g., Baseline→Advanced) | Incremental improvements needed |
+| **Large** | 2 tier difference (e.g., Baseline→Adaptive) | Foundational changes needed |
+
+> **Note:** With 3 maturity tiers, Medium is not a distinct gap level. For implementation, the number of blocking findings can be mapped to these tiers: 0 → None, 1–3 → Small, 4+ → Large.
 
 ---
 

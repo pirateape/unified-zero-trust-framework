@@ -72,7 +72,7 @@ CISA "Target/Adaptive"          ↔ UZTF 81–100 ↔  "Adaptive"
 1. Scanner finds 3 hardcoded secrets → mapped to `identity` pillar
 2. Gap count = 3
 3. Score = 100 − (3 × 20) = **40** → **Baseline**
-4. Gap analysis: *"Medium gap from Baseline to Advanced. Rotate all hardcoded secrets, enforce MFA."*
+4. Gap analysis: *"Small gap from Baseline to Advanced. Rotate all hardcoded secrets, enforce MFA."*
 
 The CISA assessment says "we need to improve identity." The UZTF scorecard says *"your identity score is 40, here are the 3 blocking findings, and here's the remediation plan."*
 

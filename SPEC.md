@@ -201,12 +201,13 @@ gap = current_maturity → target_maturity
 
 ### 4.2 Gap Levels
 
+With 3 maturity tiers (Baseline → Advanced → Adaptive), the possible gap sizes are:
+
 | Gap | Threshold | Implication |
 |-----|-----------|-------------|
 | None | Current ≥ Target | On track |
-| Small | 1 tier difference | Incremental improvements |
-| Medium | 2 tier difference | Significant effort |
-| Large | 3 tier difference | Foundational changes needed |
+| Small | 1 tier difference (e.g., Baseline→Advanced) | Incremental improvements needed |
+| Large | 2 tier difference (e.g., Baseline→Adaptive) | Foundational changes needed |
 
 ### 4.3 Gap Output
 
@@ -214,7 +215,7 @@ Each gap analysis includes:
 - **Pillar name**
 - **Current maturity tier**
 - **Target maturity tier** (configurable, default: Advanced)
-- **Gap level** (None / Small / Medium / Large)
+- **Gap level** (None / Small / Large)
 - **Blocking findings count** (findings preventing progression)
 - **Recommendations** (actionable remediation steps)
 

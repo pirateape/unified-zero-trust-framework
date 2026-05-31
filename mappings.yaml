@@ -8,7 +8,7 @@
 # Format:
 #   - keywords: [list of keywords to match in finding title/description]
 #     pillar: <pillar_name>
-    default_maturity: <Baseline|Advanced|Adaptive>
+#     default_maturity: <Baseline|Advanced|Adaptive>
 
 # ──────────────────────────────────────────────
 # Pillar: Identity
