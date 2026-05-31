@@ -50,7 +50,7 @@ CISA's 5 pillars (Identity, Devices, Networks, Applications, Data) cover the **w
 
 ## Maturity Tiers
 
-UZTF uses the same 3-tier maturity model as CISA:
+UZTF adapts CISA's maturity model into 3 actionable tiers — **Baseline** (maps to CISA Traditional+Initial, 0–50), **Advanced** (maps to CISA Advanced, 51–80), **Adaptive** (maps to CISA Optimal, 81–100).
 
 | Tier | Score | Description |
 |------|:-----:|-------------|
