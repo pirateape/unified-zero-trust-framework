@@ -191,6 +191,12 @@ ApeGuard automatically maps every finding to UZTF pillars, computes the scorecar
 
 ---
 
+## See Also
+
+- [ApeGuard](https://github.com/pirateape/ape-guard) — Reference CLI implementation of UZTF
+- [ApeGuard GitHub Action](https://github.com/pirateape/apeguard-action) — Run UZTF-scored scans in CI/CD
+- [Azure Security Audit Framework](https://github.com/pirateape/Azure-Security) — 148+ Azure defense-in-depth resources (KQL, PowerShell, Policies, Workbooks)
+
 ## License
 
 Elastic License 2.0 — see [LICENSE](./LICENSE). Same as ApeGuard.
