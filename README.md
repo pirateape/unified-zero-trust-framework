@@ -1,5 +1,8 @@
 # Unified Zero Trust Framework (UZTF)
 
+[![CI](https://github.com/pirateape/unified-zero-trust-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/pirateape/unified-zero-trust-framework/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Elastic_2.0-blue.svg)](LICENSE)
+
 **A practical, implementation-focused maturity model for Zero Trust security posture assessment.**
 
 The Unified Zero Trust Framework extends the [CISA Zero Trust Maturity Model](https://www.cisa.gov/zero-trust-maturity-model) into an actionable 8-pillar scoring system. While CISA provides the foundational *what* and *why* of Zero Trust, UZTF adds the *how* — mapping real-world security findings directly to pillar scores with gap analysis.
