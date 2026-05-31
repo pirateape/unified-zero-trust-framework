@@ -19,7 +19,7 @@ Organizations already using CISA's model can adopt UZTF as an **implementation l
 
 ### Direct 1:1 Mapping (5 pillars)
 
-| CISA Pillar | UZTF Pillar | CITA DCITE Ref | Notes |
+| CISA Pillar | UZTF Pillar | DCITE Ref | Notes |
 |-------------|-------------|----------------|-------|
 | Identity | Identity | 1.1–1.5 | Direct mapping |
 | Devices | Devices | 2.1–2.5 | Direct mapping |
@@ -33,13 +33,13 @@ Organizations already using CISA's model can adopt UZTF as an **implementation l
 |--------------------|-------------|-----------|
 | Visibility & Analytics | Visibility | CISA treats this as a cross-cutting function. UZTF elevates it to a standalone pillar because you cannot implement Zero Trust without visibility into all other pillars. |
 | Automation & Orchestration | Automation | CISA recommends automation across all pillars. UZTF makes it explicit because manual processes are the #1 blocker to Zero Trust at scale. |
-| *(implicit in Devices/Applications)* | Infrastructure | CISA addresses cloud/container config within Devices and Applications. UZTF separates it because infrastructure misconfigurations are the most common root cause of breaches. |
+| *(implicit in Devices/Applications)* | Infrastructure | UZTF elevates infrastructure posture to a standalone pillar because cloud/container misconfigurations are the #1 root cause of breaches. This replaces CISA's cross-cutting Governance pillar as an explicit operational concern, while Governance is treated as an overarching input to all pillars. |
 
 ---
 
 ## Maturity Alignment
 
-UZTF uses the same 3-tier maturity model and definitions as CISA:
+UZTF adapts CISA's 4-tier maturity model into 3 actionable tiers: Baseline (0–50, mapping CISA's Traditional+Initial), Advanced (51–80), and Adaptive (81–100, mapping CISA's Optimal).
 
 | Tier | CISA Definition | UZTF Equivalent |
 |------|----------------|-----------------|
@@ -103,4 +103,4 @@ For organizations using CISA's model:
 - [CISA Zero Trust Maturity Model](https://www.cisa.gov/zero-trust-maturity-model) — v2.0, April 2023
 - [CISA Zero Trust Cross-Agency Initiative (ZCII)](https://www.cisa.gov/zero-trust)
 - [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/publications/detail/sp/800-207/final)
-- [DCITE 1.0: Zero Trust Reference Architecture](https://dodcio.defense.gov/Portals/0/Documents/Library/ZT_Ref_Arch.pdf)
+- [DCITE 1.0: Zero Trust Reference Architecture](https://dodcio.defense.gov/Portals/0/Documents/Library/(U)ZT_RA_v2.0(U)_Sep22.pdf)

@@ -46,7 +46,7 @@ The Unified Zero Trust Framework (UZTF) is an 8-pillar maturity model for assess
 
 **ZT principle:** Never trust, always verify. Every access request must be authenticated and authorized.
 
-**Example CISA alignment:** DCITE 1.1–1.5 (Identity)
+**Example alignment (DoD ZTRA):** DCITE 1.1–1.5 (Identity)
 
 ### 2.2 Devices
 
@@ -61,7 +61,7 @@ The Unified Zero Trust Framework (UZTF) is an 8-pillar maturity model for assess
 
 **ZT principle:** Every device accessing resources must be healthy and compliant.
 
-**Example CISA alignment:** DCITE 2.1–2.5 (Devices)
+**Example alignment (DoD ZTRA):** DCITE 2.1–2.5 (Devices)
 
 ### 2.3 Networks
 
@@ -76,7 +76,7 @@ The Unified Zero Trust Framework (UZTF) is an 8-pillar maturity model for assess
 
 **ZT principle:** All network traffic should be encrypted and explicitly authorized.
 
-**Example CISA alignment:** DCITE 3.1–3.5 (Networks)
+**Example alignment (DoD ZTRA):** DCITE 3.1–3.5 (Networks)
 
 ### 2.4 Applications
 
@@ -91,7 +91,7 @@ The Unified Zero Trust Framework (UZTF) is an 8-pillar maturity model for assess
 
 **ZT principle:** Applications enforce access decisions and maintain their own security posture.
 
-**Example CISA alignment:** DCITE 4.1–4.5 (Applications)
+**Example alignment (DoD ZTRA):** DCITE 4.1–4.5 (Applications)
 
 ### 2.5 Data
 
@@ -106,7 +106,7 @@ The Unified Zero Trust Framework (UZTF) is an 8-pillar maturity model for assess
 
 **ZT principle:** Data is protected at rest and in transit, with access based on explicit policy.
 
-**Example CISA alignment:** DCITE 5.1–5.5 (Data)
+**Example alignment (DoD ZTRA):** DCITE 5.1–5.5 (Data)
 
 ### 2.6 Visibility
 
