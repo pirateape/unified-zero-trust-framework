@@ -5,7 +5,7 @@
 
 **A practical, implementation-focused maturity model for Zero Trust security posture assessment.**
 
-The Unified Zero Trust Framework extends the [CISA Zero Trust Maturity Model](https://www.cisa.gov/zero-trust-maturity-model) into an actionable 8-pillar scoring system. While CISA provides the foundational *what* and *why* of Zero Trust, UZTF adds the *how* — mapping real-world security findings directly to pillar scores with gap analysis.
+The Unified Zero Trust Framework extends the [CISA Zero Trust Maturity Model](https://www.cisa.gov/zero-trust-maturity-model) into an actionable 12-pillar scoring system. While CISA provides the foundational *what* and *why* of Zero Trust, UZTF adds the *how* — mapping real-world security findings directly to pillar scores with gap analysis.
 
 > CISA laid the foundation. UZTF builds the house.
 
@@ -19,8 +19,8 @@ UZTF bridges that gap:
 
 | | CISA ZT Maturity Model | UZTF (this framework) |
 |---|---|---|
-| **Pillars** | 5 | 8 |
-| **Scoring** | Qualitative per-pillar | 0–100 per pillar, 0–800 total |
+| **Pillars** | 5 | 12 |
+| **Scoring** | Qualitative per-pillar | 0–100 per pillar, 0–1200 total |
 | **Input** | Manual assessment | Automated scan findings |
 | **Output** | Strategic guidance | Prioritized remediation plan |
 | **Audience** | Leadership | Engineers + EMs + Leadership |
@@ -28,26 +28,34 @@ UZTF bridges that gap:
 
 ---
 
-## The 8 Pillars
+## The 12 Pillars
 
 | # | Pillar | Domain | CISA Equivalent |
 |---|---|---|---|
 | 1 | **Identity** | AuthN/AuthZ, credentials, secrets | Identity |
-| 2 | **Devices** | Endpoint health, patch status, SAST | Devices |
-| 3 | **Networks** | Segmentation, traffic security, IaC | Networks |
-| 4 | **Applications** | App sec, input validation, dependencies | Applications |
-| 5 | **Data** | Encryption, classification, DLP | Data |
-| 6 | **Visibility** | Monitoring, audit logs, analytics | — *(new)* |
-| 7 | **Automation** | Automated response, orchestration, CI/CD | — *(new)* |
-| 8 | **Infrastructure** | Cloud/host config, IAM, containers | — *(new)* |
+| 2 | **Endpoints** | Endpoint health, patch status, SAST | Devices |
+| 3 | **IoT & OT Systems** | Unmanaged devices, network isolation, behavioral monitoring | — *(new)* |
+| 4 | **Networks** | Segmentation, traffic security, IaC | Networks |
+| 5 | **Infrastructure** | Cloud/host config, IAM, containers | — *(new)* |
+| 6 | **Applications** | App sec, input validation, dependencies | Applications |
+| 7 | **Supply Chain** | Vendor risk, SBOM, third-party access | — *(new)* |
+| 8 | **Data** | Encryption, classification, DLP | Data |
+| 9 | **AI Systems** | AI/ML security, prompt injection, data privacy | — *(new)* |
+| 10 | **Operations** | Monitoring, audit logs, analytics, threat intel | — *(new)* |
+| 11 | **Resilience** | Backup, recovery, incident response | — *(new)* |
+| 12 | **Governance** | Security culture, training, risk scoring | — *(new)* |
 
-### Why 8 pillars instead of 5?
+### Why 12 pillars instead of 5?
 
-CISA's 5 pillars (Identity, Devices, Networks, Applications, Data) cover the **what**. UZTF adds 3 pillars that address the **operational enablers** of Zero Trust:
+CISA's 5 pillars (Identity, Devices, Networks, Applications, Data) cover the **what**. UZTF adds 7 pillars that address the **operational enablers** and **modern attack surfaces** of Zero Trust:
 
-- **Visibility** — You can't secure what you can't see. Monitoring, logging, and analytics are prerequisites for all other pillars.
-- **Automation** — Zero Trust at scale requires automated policy enforcement and response. Manual processes don't scale.
+- **IoT & OT Systems** — Unmanaged "dumb" devices are a growing attack surface. Discovery, isolation, and behavioral monitoring are prerequisites.
 - **Infrastructure** — Cloud and container configurations are too often the root cause of breaches. Explicit infrastructure posture drives all other pillars.
+- **Supply Chain** — Vendor risk, SBOMs, and third-party access are critical in modern software delivery.
+- **AI Systems** — GenAI/LLM adoption introduces new attack vectors (prompt injection, model inversion, data leakage) requiring specialized controls.
+- **Operations** — You can't secure what you can't see. Monitoring, logging, and analytics are prerequisites for all other pillars.
+- **Resilience** — Zero Trust assumes breach. Backup validation, automated isolation, and rapid recovery are essential.
+- **Governance** — Security culture, continuous risk scoring, and policy alignment with business workflows sustain the program.
 
 ---
 
@@ -94,30 +102,50 @@ UZTF adapts CISA's maturity model into 3 actionable tiers — **Baseline** (maps
 Each pillar is scored 0–100 based on the count and severity of findings mapped to that pillar:
 
 ```
-pillar_score = max(0, 100 - (gap_count × 20))
+pillar_score = max(0, 100 - Σ(severity_weight × finding_count))
 ```
 
-Where `gap_count` is the number of distinct finding groups in that pillar (capped at 5).
+Where `finding_count` is the number of distinct finding groups in that pillar (grouped by rule_id + severity).
 
-**Overall score:** Sum of all 8 pillar scores (0–800).
+**Severity Weights:**
+| Severity | Weight |
+|----------|--------|
+| Critical | 20 |
+| High | 15 |
+| Medium | 10 |
+| Low | 5 |
+| Info | 1 |
 
-### Scoring Rules
+### Scoring Examples
 
-- **0 gaps** → 100 (Adaptive)
-- **1 gap** → 80 (Advanced)
-- **2 gaps** → 60 (Advanced)
-- **3 gaps** → 40 (Baseline)
-- **4 gaps** → 20 (Baseline)
-- **5+ gaps** → 0 (Baseline)
+| Findings in Pillar | Calculation | Score | Tier |
+|---|---|---|---|
+| 0 findings | 100 - 0 | 100 | Adaptive |
+| 1 Critical | 100 - 20 | 80 | Advanced |
+| 1 High + 2 Medium | 100 - (15 + 20) | 65 | Advanced |
+| 2 Critical + 1 High | 100 - (40 + 15) | 45 | Baseline |
+| 5 Critical | 100 - 100 | 0 | Baseline |
+
+### Overall Score
+
+```
+overall_score = sum(pillar_score for each of 12 pillars)
+```
+
+Range: 0–1200.
 
 ### Maturity Classification
 
 | Total Score | Classification |
 |:-----------:|---------------|
-| 641–800 | Mostly Adaptive |
-| 401–640 | Mostly Advanced |
-| 161–400 | Mostly Baseline |
-| 0–160 | Initial |
+| 961–1200 | **Mostly Adaptive** — strong posture, real-time capabilities |
+| 601–960 | **Mostly Advanced** — proactive posture, partial automation |
+| 241–600 | **Mostly Baseline** — foundational controls, manual processes |
+| 0–240 | **Initial** — significant gaps across all pillars |
+
+### Pillars at Advanced+
+
+Count of pillars with score ≥ 51 (Advanced tier or above).
 
 ---
 
@@ -165,14 +193,21 @@ The Unified Zero Trust Framework is **not a replacement** for CISA's Zero Trust 
 ### Mapping
 
 The CISA→UZTF pillar mapping is:
-- CISA **Identity** → UZTF **Identity**
-- CISA **Devices** → UZTF **Devices**
-- CISA **Networks** → UZTF **Networks**
-- CISA **Applications** → UZTF **Applications**
-- CISA **Data** → UZTF **Data**
-- CISA *(cross-cutting)* → UZTF **Visibility** (monitoring & analytics)
-- CISA *(cross-cutting)* → UZTF **Automation** (orchestration)
-- CISA *(cross-cutting)* → UZTF **Infrastructure** (cloud/host)
+
+| CISA Pillar | UZTF Pillar(s) | Notes |
+|-------------|----------------|-------|
+| Identity | Identity | Direct mapping |
+| Devices | Endpoints, IoT & OT | Devices split into managed + unmanaged |
+| Networks | Networks | Direct mapping |
+| Applications | Applications | Direct mapping |
+| Data | Data | Direct mapping |
+| Visibility & Analytics (cross-cutting) | Operations | Elevated to standalone pillar |
+| Automation & Orchestration (cross-cutting) | Automation & Integration Layer | Cross-cutting layer |
+| Governance (cross-cutting) | Governance, Governance & Resilience Layer | Elevated + cross-cutting |
+| *(implicit)* | Infrastructure | Cloud/host config elevated to pillar |
+| *(implicit)* | Supply Chain | Vendor/SBOM elevated to pillar |
+| *(implicit)* | AI Systems | Emerging domain |
+| *(implicit)* | Resilience | Recovery/IR elevated to pillar |
 
 > For full details, see [CISA_BRIDGE.md](./CISA_BRIDGE.md).
 
@@ -186,7 +221,7 @@ The CISA→UZTF pillar mapping is:
 # Install
 brew tap pirateape/tap && brew install apeguard
 
-# Run a scan mapped to all 8 UZTF pillars
+# Run a scan mapped to all 12 UZTF pillars
 apeguard scan
 
 # View your UZTF scorecard
