@@ -110,8 +110,8 @@ Where `finding_count` is the number of distinct finding groups in that pillar (g
 **Severity Weights:**
 | Severity | Weight |
 |----------|--------|
-| Critical | 20 |
-| High | 15 |
+| Critical | 55 |
+| High | 25 |
 | Medium | 10 |
 | Low | 5 |
 | Info | 1 |
@@ -121,10 +121,10 @@ Where `finding_count` is the number of distinct finding groups in that pillar (g
 | Findings in Pillar | Calculation | Score | Tier |
 |---|---|---|---|
 | 0 findings | 100 - 0 | 100 | Adaptive |
-| 1 Critical | 100 - 20 | 80 | Advanced |
-| 1 High + 2 Medium | 100 - (15 + 20) | 65 | Advanced |
-| 2 Critical + 1 High | 100 - (40 + 15) | 45 | Baseline |
-| 5 Critical | 100 - 100 | 0 | Baseline |
+| 1 Critical | 100 - 55 | 45 | Baseline |
+| 1 High + 2 Medium | 100 - (25 + 20) | 55 | Advanced |
+| 2 High | 100 - 50 | 50 | Baseline |
+| 2 Critical + 1 High | 100 - (110 + 25) | 0 | Baseline |
 
 ### Overall Score
 

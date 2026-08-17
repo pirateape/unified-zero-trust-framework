@@ -16,7 +16,7 @@ This guide documents the breaking changes required to migrate ApeGuard from the 
 | Aspect | UZTF v1.0 (Legacy) | UZTF v2.0 (Canonical) |
 |--------|-------------------|----------------------|
 | **Pillars** | 8 | 12 |
-| **Scoring** | Unweighted gap count (capped at 5) | Severity-weighted (Critical=20, High=15, Medium=10, Low=5, Info=1) |
+| **Scoring** | Unweighted gap count (capped at 5) | Severity-weighted (Critical=55, High=25, Medium=10, Low=5, Info=1) |
 | **Max Score** | 800 | 1200 |
 | **Maturity Thresholds** | 0-50/51-80/81-100 per pillar | Same per-pillar, 0-240/241-600/601-960/961-1200 overall |
 
@@ -81,8 +81,8 @@ enum Severity { Critical, High, Medium, Low, Info }
 impl Severity {
     fn weight(&self) -> u32 {
         match self {
-            Severity::Critical => 20,
-            Severity::High => 15,
+            Severity::Critical => 55,
+            Severity::High => 25,
             Severity::Medium => 10,
             Severity::Low => 5,
             Severity::Info => 1,
@@ -288,9 +288,9 @@ Add optional `--deployment-mode hub-spoke` flag that groups pillars:
 ## Validation Test Cases
 
 ### Test Case 1: Identity Pillar
-**Input:** 3 Critical secrets + 1 High missing MFA
-**Expected v1.0:** gap_count=4 → score=20 (Baseline)
-**Expected v2.0:** 3×20 + 1×15 = 75 deduction → score=25 (Baseline)
+**Input:** 1 Critical secret + 1 High missing MFA
+**Expected v1.0:** gap_count=2 → score=60 (Advanced)
+**Expected v2.0:** 1×55 + 1×25 = 80 deduction → score=20 (Baseline)
 
 ### Test Case 2: Clean Repository
 **Input:** 0 findings across all pillars
@@ -298,9 +298,9 @@ Add optional `--deployment-mode hub-spoke` flag that groups pillars:
 **Expected v2.0:** 12×100 = 1200 (Mostly Adaptive)
 
 ### Test Case 3: Mixed Severity
-**Input:** 1 Critical, 2 High, 3 Medium, 5 Low, 10 Info in Networks
-**Expected v1.0:** gap_count=5 (capped) → score=0 (Baseline)
-**Expected v2.0:** 20 + 30 + 30 + 25 + 10 = 115 deduction → score=0 (Baseline)
+**Input:** 1 High, 3 Medium, 5 Low, 10 Info in Networks
+**Expected v1.0:** gap_count=4 → score=20 (Baseline)
+**Expected v2.0:** 25 + 30 + 25 + 10 = 90 deduction → score=10 (Baseline)
 
 ### Test Case 4: New Pillars
 **Input:** Findings with keywords: `prompt.injection`, `sbom`, `iot`, `backup.validation`, `insider.threat`

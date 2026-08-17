@@ -4,7 +4,8 @@
 
 | Version | Supported | Notes |
 |---------|-----------|-------|
-| 1.x     | ✅        | Current major release |
+| 2.x     | ✅        | Current major release |
+| 1.x     | ✅        | Legacy 8-pillar release |
 
 ## Reporting a Vulnerability
 

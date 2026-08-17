@@ -285,14 +285,14 @@ Where `finding_count` = number of distinct finding groups mapped to that pillar,
 **Severity Weights:**
 | Severity | Weight |
 |----------|--------|
-| Critical | 20 |
-| High | 15 |
+| Critical | 55 |
+| High | 25 |
 | Medium | 10 |
 | Low | 5 |
 | Info | 1 |
 
-**Example:** 2 Critical + 1 High + 3 Medium findings in Identity pillar:
-- Score = 100 - (2×20 + 1×15 + 3×10) = 100 - (40 + 15 + 30) = 15 → Baseline
+**Example:** 1 Critical + 1 High + 3 Medium findings in Identity pillar:
+- Score = 100 - (1×55 + 1×25 + 3×10) = 100 - (55 + 25 + 30) = 0 → Baseline
 
 ### 4.2 Overall Score
 
