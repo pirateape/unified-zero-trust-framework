@@ -28,44 +28,52 @@ UZTF bridges that gap:
 
 ---
 
-## The 12 Pillars
+## The 12 Pillars: Hub & Spoke Architecture
 
+UZTF organizes the 12 pillars into a **Hub & Spoke** model. The Hub represents the core Zero Trust domains (largely derived from CISA), while the Spokes represent the operational capabilities and modern attack surfaces that act upon the Hub.
+
+### The Hub (Core Domains)
 | # | Pillar | Domain | CISA Equivalent |
 |---|---|---|---|
 | 1 | **Identity** | AuthN/AuthZ, credentials, secrets | Identity |
-| 2 | **Endpoints** | Endpoint health, patch status, SAST | Devices |
-| 3 | **IoT & OT Systems** | Unmanaged devices, network isolation, behavioral monitoring | — *(new)* |
-| 4 | **Networks** | Segmentation, traffic security, IaC | Networks |
-| 5 | **Infrastructure** | Cloud/host config, IAM, containers | — *(new)* |
-| 6 | **Applications** | App sec, input validation, dependencies | Applications |
-| 7 | **Supply Chain** | Vendor risk, SBOM, third-party access | — *(new)* |
-| 8 | **Data** | Encryption, classification, DLP | Data |
-| 9 | **AI Systems** | AI/ML security, prompt injection, data privacy | — *(new)* |
-| 10 | **Operations** | Monitoring, audit logs, analytics, threat intel | — *(new)* |
-| 11 | **Resilience** | Backup, recovery, incident response | — *(new)* |
-| 12 | **Governance** | Security culture, training, risk scoring | — *(new)* |
+| 2 | **Endpoints** | Device health, MDM, EDR, OS patching | Devices |
+| 3 | **Networks** | Segmentation, traffic security, boundary defense | Networks |
+| 4 | **Applications** | App sec, web vulnerabilities, APIs | Applications |
+| 5 | **Data** | Encryption, classification, DLP, shadow data | Data |
+| 6 | **Operations** | Monitoring, audit logs, analytics, SIEM | Visibility & Analytics |
+| 7 | **Governance** | Security culture, training, risk scoring | Governance |
+
+### The Spokes (Modern Vectors & Capabilities)
+| # | Pillar | Domain | CISA Equivalent |
+|---|---|---|---|
+| 8 | **Infrastructure** | Cloud config, containers, IAM, IaC | — *(new)* |
+| 9 | **IoT & OT Systems** | Unmanaged devices, industrial protocols, isolation | — *(new)* |
+| 10| **Supply Chain** | Vendor risk, third-party code, SBOM | — *(new)* |
+| 11| **AI Systems** | AI/ML security, prompt injection, RAG access | — *(new)* |
+| 12| **Resilience** | Backup, high availability, incident response | — *(new)* |
 
 ### Why 12 pillars instead of 5?
 
 CISA's 5 pillars (Identity, Devices, Networks, Applications, Data) cover the **what**. UZTF adds 7 pillars that address the **operational enablers** and **modern attack surfaces** of Zero Trust:
 
-- **IoT & OT Systems** — Unmanaged "dumb" devices are a growing attack surface. Discovery, isolation, and behavioral monitoring are prerequisites.
 - **Infrastructure** — Cloud and container configurations are too often the root cause of breaches. Explicit infrastructure posture drives all other pillars.
-- **Supply Chain** — Vendor risk, SBOMs, and third-party access are critical in modern software delivery.
-- **AI Systems** — GenAI/LLM adoption introduces new attack vectors (prompt injection, model inversion, data leakage) requiring specialized controls.
+- **IoT & OT Systems** — Unmanaged "dumb" devices and industrial protocols are a growing attack surface requiring hardware-level isolation.
+- **Supply Chain** — Third-party code, transitive dependencies, and vendor access are critical in modern software delivery.
+- **AI Systems** — GenAI/LLM adoption introduces new attack vectors (prompt injection, data poisoning) requiring specialized controls.
 - **Operations** — You can't secure what you can't see. Monitoring, logging, and analytics are prerequisites for all other pillars.
-- **Resilience** — Zero Trust assumes breach. Backup validation, automated isolation, and rapid recovery are essential.
-- **Governance** — Security culture, continuous risk scoring, and policy alignment with business workflows sustain the program.
+- **Resilience** — Zero Trust assumes breach. Immutable backups, high availability, and rapid recovery are essential.
+- **Governance** — Continuous risk scoring and policy alignment with business workflows sustain the program.
 
 ---
 
 ## Maturity Tiers
 
-UZTF adapts CISA's maturity model into 3 actionable tiers — **Baseline** (maps to CISA Traditional+Initial, 0–50), **Advanced** (maps to CISA Advanced, 51–80), **Adaptive** (maps to CISA Optimal, 81–100).
+UZTF adapts CISA's maturity model into 4 actionable tiers — **Initial** (0-20), **Baseline** (21–50), **Advanced** (51–80), **Adaptive** (81–100).
 
 | Tier | Score | Description |
 |------|:-----:|-------------|
-| **Baseline** | 0–50 | Foundational controls present, significant gaps remain |
+| **Initial** | 0–20 | Significant gaps across the pillar, completely unmanaged |
+| **Baseline** | 21–50 | Foundational controls present, significant gaps remain |
 | **Advanced** | 51–80 | Proactive security measures implemented, partial automation |
 | **Adaptive** | 81–100 | Real-time, automated, self-healing posture |
 
@@ -176,9 +184,10 @@ Gaps are measured as the difference between current and target maturity tiers:
 |-----|-----------|-------------|
 | **None** | Current ≥ Target | On track, no action needed |
 | **Small** | 1 tier difference (e.g., Baseline→Advanced) | Incremental improvements needed |
-| **Large** | 2 tier difference (e.g., Baseline→Adaptive) | Foundational changes needed |
+| **Medium** | 2 tier difference (e.g., Initial→Advanced) | Significant investment needed |
+| **Large** | 3 tier difference (e.g., Initial→Adaptive) | Foundational changes needed |
 
-> **Note:** With 3 maturity tiers, Medium is not a distinct gap level. For implementation, the number of blocking findings can be mapped to these tiers: 0 → None, 1–3 → Small, 4+ → Large.
+> **Note:** For implementation, the number of blocking findings can be mapped to these tiers: 0 → None, 1–3 → Small, 4-6 → Medium, 7+ → Large.
 
 ---
 

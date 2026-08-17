@@ -50,50 +50,35 @@
 
 # ──────────────────────────────────────────────
 # Pillar: Endpoints
-# Endpoint health, code quality, supply chain
+# Endpoint health, device compliance, MDM, EDR
 # ──────────────────────────────────────────────
-- keywords: [injection]
+- keywords: [edr, endpoint.detection, antivirus, malware.protection]
   pillar: endpoints
   severity_weight: High
-- keywords: [xss, cross.site]
+- keywords: [mdm, mobile.device.management, intune, jamf]
   pillar: endpoints
   severity_weight: High
-- keywords: [rce, remote.code, command.injection]
-  pillar: endpoints
-  severity_weight: Critical
-- keywords: [buffer.overflow, use.after.free, memory.safety]
-  pillar: endpoints
-  severity_weight: Critical
-- keywords: [path.traversal, lfi, directory.traversal]
-  pillar: endpoints
-  severity_weight: High
-- keywords: [unvalidated, unsanitized]
+- keywords: [screen.lock, passcode, screen.timeout]
   pillar: endpoints
   severity_weight: Medium
-- keywords: [vulnerable.dependency, outdated.library, outdated.runtime]
+- keywords: [jailbroken, rooted, custom.rom]
   pillar: endpoints
-  severity_weight: High
-- keywords: [compiler.warning, unsound.code]
-  pillar: endpoints
-  severity_weight: Low
-- keywords: [missing.security.header, csp, hsts, x.frame.options]
+  severity_weight: Critical
+- keywords: [endpoint.compliance, posture.check]
   pillar: endpoints
   severity_weight: Medium
-- keywords: [sqli, sql.injection]
+- keywords: [host.firewall, disabled.firewall]
   pillar: endpoints
-  severity_weight: Critical
-- keywords: [deserialization, insecure.deserialization]
-  pillar: endpoints
-  severity_weight: Critical
-- keywords: [xxe, xml.external]
-  pillar: endpoints
-  severity_weight: High
+  severity_weight: Medium
 
 # ──────────────────────────────────────────────
 # Pillar: IoT & OT Systems
 # Unmanaged device visibility, network isolation, behavioral monitoring
 # ──────────────────────────────────────────────
 - keywords: [iot, internet.of.things, ot, operational.technology]
+  pillar: iot_ot
+  severity_weight: High
+- keywords: [scada, plc, modbus, dnp3, industrial.control]
   pillar: iot_ot
   severity_weight: High
 - keywords: [unmanaged.device, undiscovered.asset]
@@ -117,17 +102,8 @@
 
 # ──────────────────────────────────────────────
 # Pillar: Networks
-# Segmentation, traffic security, IaC
+# Segmentation, traffic security, routing, boundary defense
 # ──────────────────────────────────────────────
-- keywords: [misconfig, misconfiguration]
-  pillar: networks
-  severity_weight: Medium
-- keywords: [ssrf, server.side.request]
-  pillar: networks
-  severity_weight: High
-- keywords: [iac, terraform, cloudformation]
-  pillar: networks
-  severity_weight: Medium
 - keywords: [open.port, exposed.port, port.exposed]
   pillar: networks
   severity_weight: High
@@ -146,11 +122,26 @@
 - keywords: [segmentation, microsegmentation, ztna]
   pillar: networks
   severity_weight: Medium
+- keywords: [vpn, ipsec, wireguard]
+  pillar: networks
+  severity_weight: High
+- keywords: [bgp, bgp.hijacking, routing.protocol]
+  pillar: networks
+  severity_weight: High
+- keywords: [ddos, denial.of.service]
+  pillar: networks
+  severity_weight: Medium
+- keywords: [wifi, wpa, wireless.security, wep]
+  pillar: networks
+  severity_weight: High
 
 # ──────────────────────────────────────────────
 # Pillar: Infrastructure
-# Cloud config, container security, host hardening, IAM
+# Cloud config, container security, host hardening, IAM, IaC
 # ──────────────────────────────────────────────
+- keywords: [iac, terraform, cloudformation, pulumi]
+  pillar: infrastructure
+  severity_weight: Medium
 - keywords: [cloud, aws, gcp, azure]
   pillar: infrastructure
   severity_weight: Medium
@@ -166,7 +157,7 @@
 - keywords: [base.image, container.image, image.tag]
   pillar: infrastructure
   severity_weight: Medium
-- keywords: [runtime, pod, deployment, service]
+- keywords: [k8s.pod, k8s.deployment, kubernetes.service, k8s.runtime]
   pillar: infrastructure
   severity_weight: Medium
 - keywords: [docker.socket, exposed.docker]
@@ -192,6 +183,9 @@
 # Pillar: Applications
 # Application security, web security, APIs
 # ──────────────────────────────────────────────
+- keywords: [ssrf, server.side.request]
+  pillar: applications
+  severity_weight: High
 - keywords: [csrf, cross.site.request]
   pillar: applications
   severity_weight: Medium
@@ -204,12 +198,6 @@
 - keywords: [open.redirect]
   pillar: applications
   severity_weight: Medium
-- keywords: [dependency, dependencies]
-  pillar: applications
-  severity_weight: Medium
-- keywords: [vulnerability, cve, cwe]
-  pillar: applications
-  severity_weight: High
 - keywords: [api, rest.endpoint, graphql]
   pillar: applications
   severity_weight: Medium
@@ -222,6 +210,39 @@
 - keywords: [rate.limit, missing.rate.limit]
   pillar: applications
   severity_weight: Medium
+- keywords: [injection]
+  pillar: applications
+  severity_weight: High
+- keywords: [xss, cross.site]
+  pillar: applications
+  severity_weight: High
+- keywords: [rce, remote.code, command.injection]
+  pillar: applications
+  severity_weight: Critical
+- keywords: [buffer.overflow, use.after.free, memory.safety]
+  pillar: applications
+  severity_weight: Critical
+- keywords: [path.traversal, lfi, directory.traversal]
+  pillar: applications
+  severity_weight: High
+- keywords: [unvalidated, unsanitized]
+  pillar: applications
+  severity_weight: Medium
+- keywords: [compiler.warning, unsound.code]
+  pillar: applications
+  severity_weight: Low
+- keywords: [missing.security.header, csp, hsts, x.frame.options]
+  pillar: applications
+  severity_weight: Medium
+- keywords: [sqli, sql.injection]
+  pillar: applications
+  severity_weight: Critical
+- keywords: [deserialization, insecure.deserialization]
+  pillar: applications
+  severity_weight: Critical
+- keywords: [xxe, xml.external]
+  pillar: applications
+  severity_weight: High
 
 # ──────────────────────────────────────────────
 # Pillar: Supply Chain
@@ -242,7 +263,7 @@
 - keywords: [typosquatting, package.confusion, dependency.confusion]
   pillar: supply_chain
   severity_weight: High
-- keywords: [transitive.dependency, supply.chain.vulnerability]
+- keywords: [dependency, dependencies, vulnerable.dependency, outdated.library, outdated.runtime, transitive.dependency, supply.chain.vulnerability]
   pillar: supply_chain
   severity_weight: High
 - keywords: [build.pipeline, ci.cd.compromise, artifact.signing]
@@ -254,8 +275,14 @@
 
 # ──────────────────────────────────────────────
 # Pillar: Data
-# Encryption, classification, DLP
+# Encryption, classification, DLP, data lifecycle
 # ──────────────────────────────────────────────
+- keywords: [shadow.data, unknown.data.store]
+  pillar: data
+  severity_weight: Medium
+- keywords: [data.tagging, data.label]
+  pillar: data
+  severity_weight: Low
 - keywords: [encryption, unencrypted, plaintext]
   pillar: data
   severity_weight: High
@@ -283,8 +310,17 @@
 
 # ──────────────────────────────────────────────
 # Pillar: AI Systems
-# AI/ML model security, prompt injection, data privacy
+# AI/ML model security, prompt injection, data privacy, RAG
 # ──────────────────────────────────────────────
+- keywords: [data.poisoning, training.poisoning]
+  pillar: ai_systems
+  severity_weight: Critical
+- keywords: [rag.auth, rag.access, rag.authorization]
+  pillar: ai_systems
+  severity_weight: High
+- keywords: [jailbreak, llm.jailbreak]
+  pillar: ai_systems
+  severity_weight: Critical
 - keywords: [prompt.injection, prompt.injection.attack]
   pillar: ai_systems
   severity_weight: Critical
@@ -329,7 +365,7 @@
 - keywords: [telemetry, metrics, tracing, distributed.tracing]
   pillar: operations
   severity_weight: Medium
-- keywords: [alert, notification, alerting]
+- keywords: [security.alert, siem.alert, monitoring.alert, incident.alert]
   pillar: operations
   severity_weight: Medium
 - keywords: [threat.intelligence, threat.intel, ti.feed]
@@ -350,6 +386,12 @@
   pillar: resilience
   severity_weight: High
 - keywords: [immutable.backup, immutable.storage]
+  pillar: resilience
+  severity_weight: High
+- keywords: [backup, system.backup, data.backup]
+  pillar: resilience
+  severity_weight: High
+- keywords: [high.availability, failover, redundancy, fault.tolerance]
   pillar: resilience
   severity_weight: High
 - keywords: [incident.response, ir.plan, ir.playbook]
@@ -378,6 +420,12 @@
 - keywords: [security.training, awareness.training]
   pillar: governance
   severity_weight: Low
+- keywords: [compliance, regulatory, soc2, pci, hipaa, iso27001]
+  pillar: governance
+  severity_weight: High
+- keywords: [security.policy, acceptable.use, governance.policy]
+  pillar: governance
+  severity_weight: Medium
 - keywords: [role.specific.training, targeted.training]
   pillar: governance
   severity_weight: Low

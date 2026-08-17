@@ -54,17 +54,17 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.2 Endpoints
 
-**Focus:** Endpoint health, software composition, static code quality, supply chain security.
+**Focus:** Endpoint health, device compliance, mobile device management (MDM), endpoint detection and response (EDR).
 
 **Sample finding types:**
-- Vulnerable dependencies (CVEs)
-- Code injection flaws (SQLi, XSS, RCE)
-- Outdated libraries or runtimes
-- Compiler warnings that indicate unsound code
-- Missing security headers
-- Unvalidated/unsanitized input
-- Path traversal, LFI, directory traversal
-- Buffer overflow, use-after-free, memory safety issues
+- Missing EDR or antivirus agent
+- Device not enrolled in MDM
+- Outdated or unsupported OS version
+- Missing screen lock or weak device passcode
+- Jailbroken or rooted mobile device
+- Unencrypted endpoint disk (FileVault/BitLocker disabled)
+- Endpoint compliance checks failing
+- Disabled host firewall
 
 **ZT principle:** Every device accessing resources must be healthy and compliant.
 
@@ -72,13 +72,13 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.3 IoT & OT Systems
 
-**Focus:** Unmanaged device visibility, network isolation, behavioral monitoring.
+**Focus:** Unmanaged device visibility, network isolation, behavioral monitoring, SCADA, PLC, industrial protocols.
 
 **Sample finding types:**
 - Undiscovered IoT/OT assets
 - Missing VLAN isolation for unmanaged devices
 - No traffic baselining for "dumb" endpoints
-- Anomalous behavior in OT protocols
+- Anomalous behavior in OT/SCADA protocols
 - Missing port lockdown on behavioral deviation
 - Default credentials on IoT devices
 - Unencrypted OT communications
@@ -89,17 +89,18 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.4 Networks
 
-**Focus:** Network segmentation, traffic security, infrastructure-as-code, network policy.
+**Focus:** Network segmentation, traffic security, boundary defense, routing, network policy, wireless security.
 
 **Sample finding types:**
 - Open ports / exposed services
-- SSRF vulnerabilities
-- IaC misconfigurations (Terraform, CloudFormation)
+- VPN vulnerabilities and weak IPSec
 - Missing TLS/SSL
 - Permissive firewall rules
 - Missing network segmentation
-- Insecure DNS configuration
+- Insecure DNS configuration and BGP hijacking risks
 - Exposed management interfaces
+- DDoS protection gaps
+- Weak WiFi/WPA security
 
 **ZT principle:** All network traffic should be encrypted and explicitly authorized.
 
@@ -107,9 +108,10 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.5 Infrastructure
 
-**Focus:** Cloud configuration, container security, host hardening, IAM configuration.
+**Focus:** Cloud configuration, container security, host hardening, IAM configuration, infrastructure-as-code.
 
 **Sample finding types:**
+- IaC misconfigurations (Terraform, CloudFormation)
 - Container running as root
 - Missing HEALTHCHECK
 - Overly permissive IAM roles
@@ -127,19 +129,19 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.6 Applications
 
-**Focus:** Application security, input validation, web security, API security.
+**Focus:** Application security, input validation, web security, API security, static code quality.
 
 **Sample finding types:**
-- Web application vulnerabilities (SQLi, XSS, CSRF, SSTI)
-- API security issues
-- Business logic flaws
-- Dependency vulnerabilities in production apps
-- Missing security controls
-- Insecure deserialization
-- XXE (XML External Entity)
-- Open redirect
-- IDOR (Insecure Direct Object Reference)
-- Missing authentication/authorization on endpoints
+- Code injection flaws (SQLi, XSS, RCE)
+- Server-Side Request Forgery (SSRF)
+- Memory safety issues (Buffer overflow, use-after-free)
+- Path traversal, LFI, directory traversal
+- Unvalidated/unsanitized input and missing security headers
+- API security issues and missing authentication
+- Business logic flaws and IDOR
+- Insecure deserialization and XXE
+- Open redirect and CSRF/SSTI
+- Compiler warnings indicating unsound code
 
 **ZT principle:** Applications enforce access decisions and maintain their own security posture.
 
@@ -155,7 +157,7 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 - Unrestricted VPN access for contractors
 - Missing ZTNA for vendor access
 - Typosquatting risk in package names
-- Transitive dependency vulnerabilities
+- Vulnerable open-source dependencies (direct and transitive)
 - Compromised build pipeline
 - Unsigned artifacts
 - Missing provenance verification
@@ -166,10 +168,11 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.8 Data
 
-**Focus:** Data encryption, classification, DLP, secrets management.
+**Focus:** Data encryption, classification, DLP, data lifecycle.
 
 **Sample finding types:**
-- Secrets and credentials exposed
+- Shadow data discovery
+- Data tagging/labeling gaps
 - Unencrypted sensitive data
 - Missing data classification
 - Inadequate access controls on data stores
@@ -184,9 +187,12 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.9 AI Systems
 
-**Focus:** AI/ML model security, prompt injection, data privacy, output handling.
+**Focus:** AI/ML model security, prompt injection, data privacy, output handling, RAG security.
 
 **Sample finding types:**
+- RAG access control failures
+- Data poisoning
+- Jailbreaks
 - Prompt injection vulnerabilities
 - Model inversion attacks
 - Training data leakage
@@ -232,6 +238,8 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 - No zero-downtime recovery capability
 - Insufficient disaster recovery testing
 - Single points of failure
+- Missing high availability or redundancy
+- Missing system/data backups
 
 **ZT principle:** Systems must be architected assuming breaches will occur, prioritizing rapid isolation and recovery.
 
@@ -239,7 +247,7 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 
 ### 2.12 Governance
 
-**Focus:** Security culture, training, risk scoring, policy alignment, insider threat.
+**Focus:** Security culture, training, risk scoring, policy alignment, compliance, insider threat.
 
 **Sample finding types:**
 - Missing security awareness training
@@ -250,6 +258,8 @@ The Unified Zero Trust Framework (UZTF) is a 12-pillar maturity model for assess
 - No security culture metrics
 - Inadequate policy review cadence
 - Missing compliance mapping
+- Compliance and regulatory violations (e.g., SOC2, PCI)
+- Missing security policies (e.g., Acceptable Use, Data Retention)
 
 **ZT principle:** Security governance must be continuous, measurable, and aligned with business objectives.
 
@@ -302,7 +312,16 @@ overall_score = sum(pillar_score for each of 12 pillars)
 
 Range: 0–1200.
 
-### 4.3 Maturity Classification
+### 4.3 Single Pillar Tiers
+
+| Tier | Score Range |
+|------|-------------|
+| **Adaptive** | 81–100 |
+| **Advanced** | 51–80 |
+| **Baseline** | 21–50 |
+| **Initial** | 0–20 |
+
+### 4.4 Overall Score Classification
 
 | Overall Score | Classification |
 |:-------------:|----------------|
@@ -311,7 +330,7 @@ Range: 0–1200.
 | 241–600 | **Mostly Baseline** — foundational controls, manual processes |
 | 0–240 | **Initial** — significant gaps across all pillars |
 
-### 4.4 Pillars at Advanced+
+### 4.5 Pillars at Advanced+
 
 Count of pillars with score ≥ 51 (Advanced tier or above).
 
@@ -328,13 +347,14 @@ gap = current_maturity → target_maturity
 
 ### 5.2 Gap Levels
 
-With 3 maturity tiers (Baseline → Advanced → Adaptive), the possible gap sizes are:
+With 4 maturity tiers (Initial → Baseline → Advanced → Adaptive), the possible gap sizes are:
 
 | Gap | Threshold | Implication |
 |-----|-----------|-------------|
 | None | Current ≥ Target | On track |
 | Small | 1 tier difference (e.g., Baseline→Advanced) | Incremental improvements needed |
-| Large | 2 tier difference (e.g., Baseline→Adaptive) | Foundational changes needed |
+| Medium | 2 tier difference (e.g., Initial→Advanced) | Significant investment needed |
+| Large | 3 tier difference (e.g., Initial→Adaptive) | Foundational changes needed |
 
 ### 5.3 Gap Output
 
@@ -342,7 +362,7 @@ Each gap analysis includes:
 - **Pillar name**
 - **Current maturity tier**
 - **Target maturity tier** (configurable, default: Advanced)
-- **Gap level** (None / Small / Large)
+- **Gap level** (None / Small / Medium / Large)
 - **Blocking findings count** (findings preventing progression)
 - **Recommendations** (actionable remediation steps)
 
@@ -360,28 +380,13 @@ Scanners can explicitly specify pillar mappings in their output. These overrides
 
 ### 6.3 Default Pillar
 
-Any finding that doesn't match a keyword or override maps to `applications` by default.
+Any finding that doesn't match a keyword or override maps to `operations` by default. Uncategorized findings represent a visibility and context gap, which is the domain of the Operations pillar.
 
 ---
 
 ## 7. OS-Specific Infrastructure Guidance
 
-Because different operating systems require distinct technical controls, the Infrastructure pillar includes tailored execution modules. Organizations should map these requirements to open, industry-recognized standards such as DISA STIGs or official Vendor Security Baselines.
-
-### 7.1 Windows Environments
-- **Baseline:** Strict Active Directory lockdowns, robust Group Policy Objects (GPOs), mandatory MFA for all network logins. Application of robust configuration standards (e.g., DISA STIGs, Microsoft Security Compliance Toolkit).
-- **Advanced:** Automated, zero-downtime patching schedules and continuous threat monitoring via EDR integration.
-- **Adaptive:** Real-time, context-aware policy enforcement tied directly to telemetry and domain health.
-
-### 7.2 Linux Environments
-- **Baseline:** Enforced key-based SSH authentication, strict `sudo` privilege controls, and comprehensive system hardening using established frameworks (e.g., DISA STIGs, vendor security guides).
-- **Advanced:** Centralized patch management and implementation of Linux Security Modules (LSM) such as SELinux or AppArmor.
-- **Adaptive:** Dynamic access controls, automated kernel compliance checks, and real-time container security evaluation.
-
-### 7.3 macOS Environments
-- **Baseline:** Centralized identity management via Mobile Device Management (MDM) and deployment of baseline configuration profiles (aligned with Apple Platform Security guidelines).
-- **Advanced:** Continuous threat monitoring tailored for Apple ecosystems and automated patch compliance tracking.
-- **Adaptive:** Real-time device posture checks (e.g., FileVault status, OS version, XProtect definitions) prior to network authentication.
+For OS-specific technical controls and implementations of the Infrastructure pillar, see [OS_BASELINES.md](./OS_BASELINES.md).
 
 ---
 

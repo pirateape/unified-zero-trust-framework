@@ -18,7 +18,7 @@ This guide documents the breaking changes required to migrate ApeGuard from the 
 | **Pillars** | 8 | 12 |
 | **Scoring** | Unweighted gap count (capped at 5) | Severity-weighted (Critical=55, High=25, Medium=10, Low=5, Info=1) |
 | **Max Score** | 800 | 1200 |
-| **Maturity Thresholds** | 0-50/51-80/81-100 per pillar | Same per-pillar, 0-240/241-600/601-960/961-1200 overall |
+| **Maturity Thresholds** | 0-50/51-80/81-100 per pillar | 4 Tiers: Initial (0-20), Baseline (21-50), Advanced (51-80), Adaptive (81-100) |
 
 ---
 
