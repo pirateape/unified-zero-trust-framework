@@ -79,13 +79,14 @@ Organizations already using CISA's model can adopt UZTF as an
 
 ## Maturity Alignment
 
-UZTF adapts CISA's 4-tier maturity model into 3 actionable tiers:
-Baseline (0–50, mapping CISA's Traditional+Initial), Advanced (51–80),
+UZTF adapts CISA's maturity model into 4 actionable tiers:
+Initial (0–20), Baseline (21–50, mapping CISA's Traditional), Advanced (51–80),
 and Adaptive (81–100, mapping CISA's Optimal).
 
 | Tier | CISA Definition | UZTF Equivalent |
 |------|-----------------|-----------------|
-| **Traditional/Baseline** | Manual processes, ad-hoc security | Baseline (0–50) |
+| **Initial** | Not defined in CISA; implies completely unmanaged | Initial (0–20) |
+| **Traditional/Baseline** | Manual processes, ad-hoc security | Baseline (21–50) |
 | **Advanced** | Automated processes, proactive security | Advanced (51–80) |
 | **Target/Adaptive** | Real-time, automated, self-healing | Adaptive (81–100) |
 

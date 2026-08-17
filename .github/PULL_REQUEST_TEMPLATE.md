@@ -1,4 +1,4 @@
-## Description
+# Pull Request Description
 [Describe your changes in detail here]
 
 ## Related Issue
@@ -7,7 +7,7 @@
 ## Motivation and Context
 [Why is this change required? What problem does it solve?]
 
-## Checklist:
+## Checklist
 - [ ] My changes are aligned with the CISA Zero Trust Maturity Model principles.
 - [ ] I have updated `mappings.yaml` (if applicable).
 - [ ] I have run `python3 validate_yaml.py` and it completes without errors.
