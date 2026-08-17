@@ -22,6 +22,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Validate YAML files
         run: python3 validate_yaml.py
 

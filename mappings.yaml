@@ -8,7 +8,6 @@
 # Format:
 #   - keywords: [list of keywords to match in finding title/description]
 #     pillar: <pillar_name>
-#     default_maturity: <Baseline|Advanced|Adaptive>
 #     severity_weight: <Critical|High|Medium|Low|Info>  # optional, for scoring guidance
 
 # ──────────────────────────────────────────────
@@ -17,47 +16,36 @@
 # ──────────────────────────────────────────────
 - keywords: [secret, secrets]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [credential, credentials]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [password, passwords]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [token, tokens, api.key, api_key]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [ssh.key, ssh_key, private.key]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [oauth, jwt, bearer]
   pillar: identity
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [mfa, multi.factor, 2fa, two.factor]
   pillar: identity
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [sso, single.sign.on]
   pillar: identity
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [rbac, role.based.access]
   pillar: identity
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [service.account, privilege.escalation]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [stale.credential, orphaned.credential, expired.credential]
   pillar: identity
-  default_maturity: Baseline
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -66,51 +54,39 @@
 # ──────────────────────────────────────────────
 - keywords: [injection]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [xss, cross.site]
   pillar: endpoints
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [rce, remote.code, command.injection]
   pillar: endpoints
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [buffer.overflow, use.after.free, memory.safety]
   pillar: endpoints
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [path.traversal, lfi, directory.traversal]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [unvalidated, unsanitized]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [vulnerable.dependency, outdated.library, outdated.runtime]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [compiler.warning, unsound.code]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: Low
 - keywords: [missing.security.header, csp, hsts, x.frame.options]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [sqli, sql.injection]
   pillar: endpoints
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [deserialization, insecure.deserialization]
   pillar: endpoints
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [xxe, xml.external]
   pillar: endpoints
-  default_maturity: Advanced
   severity_weight: High
 
 # ──────────────────────────────────────────────
@@ -119,31 +95,24 @@
 # ──────────────────────────────────────────────
 - keywords: [iot, internet.of.things, ot, operational.technology]
   pillar: iot_ot
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [unmanaged.device, undiscovered.asset]
   pillar: iot_ot
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [vlan.isolation, network.segmentation.iot]
   pillar: iot_ot
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [traffic.baselining, behavioral.monitoring.iot]
   pillar: iot_ot
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [default.credential.iot, weak.credential.iot]
   pillar: iot_ot
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [unencrypted.ot, plaintext.ot]
   pillar: iot_ot
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [port.lockdown, automated.port.lockdown]
   pillar: iot_ot
-  default_maturity: Adaptive
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -152,39 +121,30 @@
 # ──────────────────────────────────────────────
 - keywords: [misconfig, misconfiguration]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [ssrf, server.side.request]
   pillar: networks
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [iac, terraform, cloudformation]
   pillar: networks
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [open.port, exposed.port, port.exposed]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [tls, ssl, certificate]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [firewall, security.group, nacl]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [dns, dnssec, dns.hijacking]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [management.interface, admin.port.exposed]
   pillar: networks
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [segmentation, microsegmentation, ztna]
   pillar: networks
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -193,51 +153,39 @@
 # ──────────────────────────────────────────────
 - keywords: [cloud, aws, gcp, azure]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [iam, role, policy, permission]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [root.user, root.access, privileged]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [healthcheck, health.check]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Low
 - keywords: [base.image, container.image, image.tag]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [runtime, pod, deployment, service]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [docker.socket, exposed.docker]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [kubernetes.rbac, k8s.rbac, rbac.misconfig]
   pillar: infrastructure
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [public.bucket, public.storage, s3.public]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [unpatched.base.image, vulnerable.base.image]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [stig, hardening, os.hardening]
   pillar: infrastructure
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [vulnerability.scanning, container.scanning]
   pillar: infrastructure
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -246,43 +194,33 @@
 # ──────────────────────────────────────────────
 - keywords: [csrf, cross.site.request]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [ssti, server.side.template]
   pillar: applications
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [idor, insecure.direct]
   pillar: applications
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [open.redirect]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [dependency, dependencies]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [vulnerability, cve, cwe]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [api, rest.endpoint, graphql]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [business.logic, logic.flaw]
   pillar: applications
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [missing.auth, missing.authorization, broken.auth]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Critical
 - keywords: [rate.limit, missing.rate.limit]
   pillar: applications
-  default_maturity: Baseline
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -291,35 +229,27 @@
 # ──────────────────────────────────────────────
 - keywords: [sbom, software.bill.of.materials]
   pillar: supply_chain
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [vendor.risk, third.party.risk, supplier.risk]
   pillar: supply_chain
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [vendor.access, contractor.access, third.party.access]
   pillar: supply_chain
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [ztna.vendor, zero.trust.network.access.vendor]
   pillar: supply_chain
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [typosquatting, package.confusion, dependency.confusion]
   pillar: supply_chain
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [transitive.dependency, supply.chain.vulnerability]
   pillar: supply_chain
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [build.pipeline, ci.cd.compromise, artifact.signing]
   pillar: supply_chain
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [provenance, artifact.provenance, slsa]
   pillar: supply_chain
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -328,35 +258,27 @@
 # ──────────────────────────────────────────────
 - keywords: [encryption, unencrypted, plaintext]
   pillar: data
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [dlp, data.loss, exfiltration]
   pillar: data
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [pii, personally.identifiable, sensitive.data]
   pillar: data
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [backup, data.retention]
   pillar: data
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [classification, data.class]
   pillar: data
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [data.exfiltration, data.leakage]
   pillar: data
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [pii.in.logs, phi.in.logs, sensitive.in.logs]
   pillar: data
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [backup.encryption, encrypted.backup]
   pillar: data
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -365,39 +287,30 @@
 # ──────────────────────────────────────────────
 - keywords: [prompt.injection, prompt.injection.attack]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [model.inversion, model.extraction]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [training.data.leakage, data.leakage.ai]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: Critical
 - keywords: [unauthorized.model.access, model.access.control]
   pillar: ai_systems
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [insecure.model.deployment, model.serving]
   pillar: ai_systems
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [ai.usage.visibility, llm.usage, genai.usage]
   pillar: ai_systems
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [data.privacy.ai, privacy.violation.ai]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [unvalidated.ai.output, ai.output.handling]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [model.supply.chain, model.provenance]
   pillar: ai_systems
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -406,35 +319,27 @@
 # ──────────────────────────────────────────────
 - keywords: [audit, audit.log, audit.trail]
   pillar: operations
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [logging, log.forward, centralized.log]
   pillar: operations
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [monitoring, observability]
   pillar: operations
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [telemetry, metrics, tracing, distributed.tracing]
   pillar: operations
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [alert, notification, alerting]
   pillar: operations
-  default_maturity: Baseline
   severity_weight: Medium
 - keywords: [threat.intelligence, threat.intel, ti.feed]
   pillar: operations
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [log.retention, retention.policy]
   pillar: operations
-  default_maturity: Baseline
   severity_weight: Low
 - keywords: [security.analytics, siem, soar]
   pillar: operations
-  default_maturity: Advanced
   severity_weight: Medium
 
 # ──────────────────────────────────────────────
@@ -443,35 +348,27 @@
 # ──────────────────────────────────────────────
 - keywords: [backup.validation, backup.test, restore.test]
   pillar: resilience
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [immutable.backup, immutable.storage]
   pillar: resilience
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [incident.response, ir.plan, ir.playbook]
   pillar: resilience
-  default_maturity: Baseline
   severity_weight: High
 - keywords: [tabletop.exercise, drill, simulation]
   pillar: resilience
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [automated.isolation, auto.isolation, breach.isolation]
   pillar: resilience
-  default_maturity: Adaptive
   severity_weight: High
 - keywords: [zero.downtime, zero.downtime.recovery, rapid.recovery]
   pillar: resilience
-  default_maturity: Adaptive
   severity_weight: High
 - keywords: [disaster.recovery, dr.plan, dr.test]
   pillar: resilience
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [single.point.of.failure, spof]
   pillar: resilience
-  default_maturity: Baseline
   severity_weight: High
 
 # ──────────────────────────────────────────────
@@ -480,33 +377,25 @@
 # ──────────────────────────────────────────────
 - keywords: [security.training, awareness.training]
   pillar: governance
-  default_maturity: Baseline
   severity_weight: Low
 - keywords: [role.specific.training, targeted.training]
   pillar: governance
-  default_maturity: Advanced
   severity_weight: Low
 - keywords: [insider.threat, insider.monitoring]
   pillar: governance
-  default_maturity: Advanced
   severity_weight: High
 - keywords: [policy.alignment, business.alignment]
   pillar: governance
-  default_maturity: Advanced
   severity_weight: Medium
 - keywords: [continuous.risk.scoring, risk.scoring]
   pillar: governance
-  default_maturity: Adaptive
   severity_weight: Medium
 - keywords: [security.culture, culture.metrics]
   pillar: governance
-  default_maturity: Adaptive
   severity_weight: Low
 - keywords: [policy.review, compliance.mapping]
   pillar: governance
-  default_maturity: Baseline
   severity_weight: Low
 - keywords: [governance, risk.management]
   pillar: governance
-  default_maturity: Baseline
   severity_weight: Medium
