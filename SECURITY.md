@@ -29,4 +29,4 @@ The UZTF specification is designed to be unambiguous and auditable. Proposed cha
 ## Related
 
 For security issues in **ApeGuard** (the reference CLI implementation of this framework), see:
-https://github.com/pirateape/ape-guard/blob/main/SECURITY.md
+[https://github.com/pirateape/ape-guard/blob/main/SECURITY.md](https://github.com/pirateape/ape-guard/blob/main/SECURITY.md)
