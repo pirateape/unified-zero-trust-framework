@@ -8,7 +8,7 @@ First off, thank you for considering contributing to the UZTF! It's people like 
 If you find a typo in the specification, an incorrect mapping, or an ambiguity in the scoring logic, please open an issue using the Bug Report template.
 
 ### Proposing Finding Mappings
-Scanner findings evolve rapidly. If you notice that a specific type of vulnerability is missing from `mappings.yaml` or mapped to the wrong pillar, please open an issue using the Mapping Proposal template. 
+Scanner findings evolve rapidly. If you notice that a specific type of vulnerability is missing from `mappings.yaml` or mapped to the wrong pillar, please open an issue using the Mapping Proposal template.
 - Include the exact finding title/description.
 - Explain why it belongs in the proposed pillar.
 - Provide the suggested `severity_weight`.
