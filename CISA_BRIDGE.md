@@ -116,13 +116,13 @@ CISA "Target/Adaptive"          ↔ UZTF 81–100 ↔ "Adaptive"
    (Critical severity)
 2. Scanner finds 1 missing MFA on admin → mapped to `identity` pillar
    (High severity)
-3. Gap calculation: 3×20 + 1×15 = 75 points deducted
-4. Score = 100 − 75 = **25** → **Baseline**
-5. Gap analysis: *"Large gap from Baseline to Advanced. Rotate all
+3. Gap calculation: 3×55 + 1×25 = 190 points deducted
+4. Score = max(0, 100 − 190) = **0** → **Initial**
+5. Gap analysis: *"Large gap from Initial to Advanced. Rotate all
    hardcoded secrets, enforce MFA on admin accounts."*
 
 The CISA assessment says "we need to improve identity." The UZTF
-scorecard says *"your identity score is 25, here are the 4 blocking
+scorecard says *"your identity score is 0, here are the 4 blocking
 findings with severity weights, and here's the remediation plan."*
 
 ---
@@ -149,31 +149,26 @@ For organizations using CISA's model:
 
 ## Hub & Spoke Deployment Model
 
-UZTF also supports a **Hub & Spoke** deployment architecture (see
-[Hub & Spoke Edition](../APE-Brain/00-Raw/Unified%20Zero%20Trust%20Framework%20(Hub%20&%20Spoke%20Edition).md)):
+UZTF also supports a **Hub & Spoke** deployment architecture, which aligns the 12-pillar framework with CISA's 5 core pillars as the foundational "Hub," while treating emerging attack surfaces as "Spokes."
 
-- **Hub (6 Core Pillars):** Identity, Endpoints, Networks,
-  Infrastructure, Operations & Resilience, Governance & Culture
-- **Spokes (6 Add-on Modules):** Cloud-Native/IaC, Supply Chain,
-  IoT/OT, Advanced Data Gov, AI Systems, Applications
+- **Hub (The Core Foundation):** Identity, Endpoints, Networks, Applications, Data, and Operations/Governance.
+- **Spokes (Emerging Domains):** Infrastructure, Supply Chain, IoT & OT Systems, AI Systems, Resilience.
 
-Organizations establish the Core first, then plug in Spokes as business
-operations require them. This maps to the 12-pillar model as:
+Organizations establish the Hub first—securing the core pathways to data—before plugging in specialized Spokes as business operations require them. This maps to the 12-pillar model as:
 
 | Hub & Spoke | 12-Pillar Model |
 |-------------|-----------------|
 | Core: Identity | Identity |
 | Core: Endpoints | Endpoints |
 | Core: Networks | Networks |
-| Core: Infrastructure | Infrastructure |
-| Core: Operations & Resilience | Operations + Resilience |
-| Core: Governance & Culture | Governance |
-| Spoke: Cloud-Native/IaC | (Infrastructure + Automation layer) |
+| Core: Applications | Applications |
+| Core: Data | Data |
+| Core: Ops & Gov | Operations + Governance |
+| Spoke: Infrastructure | Infrastructure |
 | Spoke: Supply Chain | Supply Chain |
 | Spoke: IoT/OT | IoT & OT Systems |
-| Spoke: Advanced Data Gov | Data (enhanced) |
 | Spoke: AI Systems | AI Systems |
-| Spoke: Applications | Applications |
+| Spoke: Resilience | Resilience |
 
 ---
 
